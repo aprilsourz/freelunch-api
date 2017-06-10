@@ -30,8 +30,9 @@ class RecruitersController < OpenReadController
   # PATCH/PUT /recruiters/1
   # PATCH/PUT /recruiters/1.json
   def update
-    if @recruiter.update(recruiter_params)
-      head :no_content
+
+    if @recruiter.update(update_params)
+      render json: @recruiter, status: :created
     else
       render json: @recruiter.errors, status: :unprocessable_entity
     end
@@ -46,11 +47,15 @@ class RecruitersController < OpenReadController
   end
 
   def set_recruiter
-    @recruiter = current_user.recruiters.find(params[:id])
+    @recruiter = current_user.recruiter
   end
 
   def recruiter_params
     params.require(:recruiter).permit(:name, :website)
+  end
+
+  def update_params
+    params.require(:recruiter).permit(:website)
   end
 
   private :set_recruiter, :recruiter_params
