@@ -1,7 +1,8 @@
-class RecruitersController < ApplicationController
-  before_action :set_recruiter, only: [:show, :update, :destroy]
+class RecruitersController < OpenReadController
+  before_action :set_recruiter, only: [:update, :destroy]
 
   # GET /recruiters
+  # GET /recruiters.json
   def index
     @recruiters = Recruiter.all
 
@@ -9,43 +10,48 @@ class RecruitersController < ApplicationController
   end
 
   # GET /recruiters/1
+  # GET /recruiters/1.json
   def show
-    render json: @recruiter
+    render json: Recruiter.find(params[:id])
   end
 
   # POST /recruiters
+  # POST /recruiters.json
   def create
-    @recruiter = Recruiter.new(recruiter_params)
+    @recruiter = current_user.build_recruiter(recruiter_params)
 
     if @recruiter.save
-      render json: @recruiter, status: :created, location: @recruiter
+      render json: @recruiter, status: :created
     else
       render json: @recruiter.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /recruiters/1
+  # PATCH/PUT /recruiters/1.json
   def update
     if @recruiter.update(recruiter_params)
-      render json: @recruiter
+      head :no_content
     else
       render json: @recruiter.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /recruiters/1
+  # DELETE /recruiters/1.json
   def destroy
     @recruiter.destroy
+
+    head :no_content
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recruiter
-      @recruiter = Recruiter.find(params[:id])
-    end
+  def set_recruiter
+    @recruiter = current_user.recruiters.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def recruiter_params
-      params.require(:recruiter).permit(:name, :website)
-    end
+  def recruiter_params
+    params.require(:recruiter).permit(:name, :website)
+  end
+
+  private :set_recruiter, :recruiter_params
 end
