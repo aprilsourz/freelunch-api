@@ -1,16 +1,18 @@
 #!/bin/bash
-TOKEN=BAhJIiU1YmUwNDAxYTRkZTM0ODU1YThkYTM5Mzk3NTBlYzU3YgY6BkVG--f11e07db51b9ac226597c14cb9fa8b11eed848ce
-TEXT=LLO
+TOKEN=BAhJIiU2NjFhOTU5ODMxNWUxYWNjMzNjMmRlZDVmYjhjNTc1OAY6BkVG--2e38ce5b057c98884e64a997c4a2bada1578005c
+NAME=arlo1
+WEBSITE=test
 API="${API_ORIGIN:-http://localhost:4741}"
-URL_PATH="/examples"
+URL_PATH="/engineers"
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
-    "example": {
-      "text": "'"${TEXT}"'"
+    "engineer": {
+      "name": "'"${NAME}"'",
+      "website": "'"${WEBSITE}"'"
     }
   }'
 
