@@ -30,8 +30,8 @@ class EngineersController < OpenReadController
   # PATCH/PUT /engineers/1
   # PATCH/PUT /engineers/1.json
   def update
-    if @engineer.update(engineer_params)
-      head :no_content
+    if @engineer.update(update_params)
+      render json: @engineer, status: :created
     else
       render json: @engineer.errors, status: :unprocessable_entity
     end
@@ -46,12 +46,17 @@ class EngineersController < OpenReadController
   end
 
   def set_engineer
-    @engineer = current_user.engineers.find(params[:id])
+    @engineer = current_user.engineer
   end
 
   def engineer_params
     params.require(:engineer).permit(:name, :website)
   end
 
-  private :set_engineer, :engineer_params
+  def update_params
+    params.require(:engineer).permit(:website)
+  end
+
+
+  private :engineer_params, :set_engineer
 end
