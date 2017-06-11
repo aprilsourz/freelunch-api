@@ -27,7 +27,7 @@ class ConversationsController < ProtectedController
   # POST /conversations
   def create
     if current_user.account_type == 'engineer'
-      render :status => 401
+      render status: 401
       return
     end
     @conversation = @recruiter.conversations.build(create_conversation_params)
@@ -41,6 +41,11 @@ class ConversationsController < ProtectedController
 
   # PATCH/PUT /conversations/1
   def update
+    if current_user.account_type == 'recruiter'
+      render status: 401
+      return
+    end
+
     @current_edit = @engineer.conversations.find(@conversation.id)
     if @current_edit.update(update_conversation_params)
       render json: @current_edit
