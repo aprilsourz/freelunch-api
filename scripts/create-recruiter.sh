@@ -1,8 +1,8 @@
 #!/bin/bash
-TOKEN=BAhJIiVjZGFlOTdhZTAxYzFjMmY4MjRlNjkyODEzN2YxMWY1NgY6BkVG--d530b235441f2d40d54b12a821cc5318eb4e7b33
-NAME=recruiter5
-WEBSITE=recruiter5
-API="${API_ORIGIN:-http://localhost:4741}"
+TOKEN=BAhJIiU0YTBlZjhmYTE0ZjBiNWU4MzJlNGRiYWFjMTIxODRmMAY6BkVG--6289d52532e5769d925064687c5207af9493887e
+NAME=r1
+WEBSITE=r1
+API="${API_ORIGIN:-https://protected-fjord-91425.herokuapp.com}"
 URL_PATH="/recruiters"
 curl "${API}${URL_PATH}" \
   --include \

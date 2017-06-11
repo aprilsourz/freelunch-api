@@ -1,7 +1,7 @@
 #!/bin/bash
-EMAIL="e5"
-PASSWORD="e5"
-API="${API_ORIGIN:-http://localhost:4741}"
+EMAIL="r1"
+PASSWORD="r1"
+API="${API_ORIGIN:-https://protected-fjord-91425.herokuapp.com/}"
 URL_PATH="/sign-up"
 curl "${API}${URL_PATH}" \
   --include \
@@ -12,7 +12,7 @@ curl "${API}${URL_PATH}" \
       "email": "'"${EMAIL}"'",
       "password": "'"${PASSWORD}"'",
       "password_confirmation": "'"${PASSWORD}"'",
-      "account_type": 0
+      "account_type": 1
     }
   }'
 
