@@ -1,6 +1,6 @@
 #!/bin/bash
-TOKEN=BAhJIiVlOWMyMGE3NGYwZjc4YzlmNTM1MWQwMDdlNDdlYjBmZQY6BkVG--ef3d39f3fcfeb11be27f473e831f438072db0dda
-URL_PATH="/users"
+TOKEN=BAhJIiUyZWFiOWM4NDFlNGExZDg3OTI0NThiNDc2OTdhZjNmMgY6BkVG--71a24b34645fd8af91a56206e890a2f30d287c4f
+URL_PATH="/conversations"
 API="${API_ORIGIN:-http://localhost:4741}"
 curl "${API}${URL_PATH}" \
   --include \
