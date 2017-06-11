@@ -1,4 +1,4 @@
-class RecruitersController < OpenReadController
+class RecruitersController < ProtectedController
   before_action :set_recruiter, only: [:update, :destroy]
 
   # GET /recruiters

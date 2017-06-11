@@ -1,4 +1,4 @@
-class EngineersController < OpenReadController
+class EngineersController < ProtectedController
   before_action :set_engineer, only: [:update, :destroy]
 
   # GET /engineers
