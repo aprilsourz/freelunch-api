@@ -2,8 +2,8 @@
 
 class ConversationsController < ProtectedController
   before_action :set_conversation, only: %i[show update destroy remove_from_trash]
-  before_action :set_recruiter, only: %i[create index]
-  before_action :set_engineer, only: %i[update index]
+  before_action :set_recruiter, only: %i[create index show]
+  before_action :set_engineer, only: %i[update index show]
   # GET /conversations
   def index
     if current_user.account_type == 'engineer'
@@ -16,6 +16,11 @@ class ConversationsController < ProtectedController
 
   # GET /conversations/1
   def show
+    if current_user.account_type == 'engineer'
+      @conversation = @engineer.conversations.find(@conversation.id)
+    elsif current_user.account_type == 'recruiter'
+      @conversations = @recruiter.conversations.find(@conversation.id)
+    end
     render json: @conversation
   end
 
