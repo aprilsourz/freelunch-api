@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20170611010209) do
   create_table "conversations", force: :cascade do |t|
     t.string   "recruiter_name",                    null: false
     t.string   "engineer_name",                     null: false
-    t.boolean  "show_to_engineer",  default: true,  null: false
-    t.boolean  "show_to_recruiter", default: true,  null: false
+    t.boolean  "show_to_engineer",  default: true
+    t.boolean  "show_to_recruiter", default: true
     t.boolean  "is_completed",      default: false
     t.string   "response"
     t.string   "lunch_request",                     null: false

@@ -4,8 +4,8 @@ class CreateConversations < ActiveRecord::Migration[5.0]
       t.string :recruiter_name, null: false
       t.string :engineer_name, null: false
 
-      t.boolean :show_to_engineer, null: false, default: true
-      t.boolean :show_to_recruiter, null: false, default: true
+      t.boolean :show_to_engineer, default: true
+      t.boolean :show_to_recruiter, default: true
       t.boolean :is_completed, default: false
 
       t.string :response
