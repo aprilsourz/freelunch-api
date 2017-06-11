@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConversationsController < ProtectedController
   before_action :set_conversation, only: [:show, :update, :destroy]
   before_action :set_recruiter, only: [:create]
@@ -37,7 +39,22 @@ class ConversationsController < ProtectedController
 
   # DELETE /conversations/1
   def destroy
-    @conversation.destroy
+    if current_user.account_type == 'engineer'
+      if @conversation.update(show_to_engineer: false)
+        render json: @conversation
+      else
+        render json: @conversation.errors, status: :unprocessable_entity
+      end
+    end
+
+    if current_user.account_type == 'recruiter'
+      if @conversation.update(show_to_recruiter: false)
+        render json: @conversation
+      else
+        render json: @conversation.errors, status: :unprocessable_entity
+      end
+    end
+
   end
 
   private
@@ -55,8 +72,8 @@ class ConversationsController < ProtectedController
     @engineer = current_user.engineer
   end
 
-
   # Only allow a trusted parameter "white list" through.
+
   def create_conversation_params
     params.require(:conversation)
           .permit(:recruiter_name, :engineer_name, :lunch_request, :engineer_id)
