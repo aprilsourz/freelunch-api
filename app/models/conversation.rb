@@ -1,4 +1,4 @@
 class Conversation < ApplicationRecord
   belongs_to :engineer
-  belongs_To :recruiter
+  belongs_to :recruiter
 end

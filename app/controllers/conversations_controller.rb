@@ -1,6 +1,6 @@
-class ConversationsController < ApplicationController
+class ConversationsController < ProtectedController
   before_action :set_conversation, only: [:show, :update, :destroy]
-
+  before_action :set_recruiter, only: [:create]
   # GET /conversations
   def index
     @conversations = Conversation.all
@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = @recruiter.conversations.build(create_conversation_params)
 
     if @conversation.save
       render json: @conversation, status: :created, location: @conversation
@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
 
   # PATCH/PUT /conversations/1
   def update
-    if @conversation.update(conversation_params)
+    if @conversation.update(create_conversation_params)
       render json: @conversation
     else
       render json: @conversation.errors, status: :unprocessable_entity
@@ -39,13 +39,19 @@ class ConversationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_conversation
-      @conversation = Conversation.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def conversation_params
-      params.require(:conversation).permit(:recruiter_name, :engineer_name, :show_to_engineer, :show_to_recruiter, :response, :lunch_request, :is_completed)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+  end
+
+  def set_recruiter
+    @recruiter = current_user.recruiter
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def create_conversation_params
+    params.require(:conversation)
+          .permit(:recruiter_name, :engineer_name, :lunch_request, :engineer_id)
+  end
 end
