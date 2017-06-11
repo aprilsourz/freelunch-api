@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :conversations
   resources :recruiters, except: [:destroy]
   resources :engineers, except: [:destroy]
   resources :examples, except: [:new, :edit]
