@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ConversationsController < ProtectedController
-  before_action :set_conversation, only: [:show, :update, :destroy]
+  before_action :set_conversation, only: %i[show update destroy remove_from_trash]
   before_action :set_recruiter, only: [:create]
   before_action :set_engineer, only: [:update]
   # GET /conversations
@@ -54,7 +54,24 @@ class ConversationsController < ProtectedController
         render json: @conversation.errors, status: :unprocessable_entity
       end
     end
+  end
 
+  def remove_from_trash
+    if current_user.account_type == 'engineer'
+      if @conversation.update(show_to_engineer: true)
+        render json: @conversation
+      else
+        render json: @conversation.errors, status: :unprocessable_entity
+      end
+    end
+
+    if current_user.account_type == 'recruiter'
+      if @conversation.update(show_to_recruiter: true)
+        render json: @conversation
+      else
+        render json: @conversation.errors, status: :unprocessable_entity
+      end
+    end
   end
 
   private

@@ -3,9 +3,9 @@ TOKEN=BAhJIiVmMmRkNjQ4N2QwYzA3OGM2YWJhMGE3MDRlZTM3MjhmNgY6BkVG--261178f9ceabc52c
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/conversations"
 ID=1
-curl "${API}${URL_PATH}/${ID}" \
+curl "${API}${URL_PATH}/${ID}/remove-from-trash" \
   --include \
-  --request DELETE \
+  --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=$TOKEN" \
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  post '/conversations/:id/remove-from-trash' => 'conversations#remove_from_trash'
   resources :conversations
   resources :recruiters, except: [:destroy]
   resources :engineers, except: [:destroy]

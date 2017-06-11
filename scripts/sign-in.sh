@@ -1,6 +1,6 @@
 #!/bin/bash
-EMAIL="recruiter2"
-PASSWORD="recruiter2"
+EMAIL="arlo1"
+PASSWORD="arlo1"
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/sign-in"
 curl "${API}${URL_PATH}" \
