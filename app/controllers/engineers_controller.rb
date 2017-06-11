@@ -18,6 +18,11 @@ class EngineersController < OpenReadController
   # POST /engineers
   # POST /engineers.json
   def create
+    if current_user.account_type == 'recruiter'
+      render status: 401
+      return
+    end
+
     @engineer = current_user.build_engineer(engineer_params)
 
     if @engineer.save
@@ -30,6 +35,10 @@ class EngineersController < OpenReadController
   # PATCH/PUT /engineers/1
   # PATCH/PUT /engineers/1.json
   def update
+    if current_user.account_type == 'recruiter'
+      render status: 401
+      return
+    end
     if @engineer.update(update_params)
       render json: @engineer, status: :created
     else
