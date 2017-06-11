@@ -6,7 +6,7 @@ class CreateConversations < ActiveRecord::Migration[5.0]
 
       t.boolean :show_to_engineer, null: false, default: true
       t.boolean :show_to_recruiter, null: false, default: true
-      t.boolean :is_completed, default: true
+      t.boolean :is_completed, default: false
 
       t.string :response
       t.string :lunch_request, null: false

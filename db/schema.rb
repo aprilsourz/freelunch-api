@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610154149) do
+ActiveRecord::Schema.define(version: 20170611010209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "recruiter_name",                    null: false
+    t.string   "engineer_name",                     null: false
+    t.boolean  "show_to_engineer",  default: true,  null: false
+    t.boolean  "show_to_recruiter", default: true,  null: false
+    t.boolean  "is_completed",      default: false
+    t.string   "response"
+    t.string   "lunch_request",                     null: false
+    t.integer  "engineer_id",                       null: false
+    t.integer  "recruiter_id",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["engineer_id"], name: "index_conversations_on_engineer_id", using: :btree
+    t.index ["recruiter_id"], name: "index_conversations_on_recruiter_id", using: :btree
+  end
 
   create_table "engineers", force: :cascade do |t|
     t.string   "name",       null: false
@@ -52,6 +68,8 @@ ActiveRecord::Schema.define(version: 20170610154149) do
     t.index ["token"], name: "index_users_on_token", unique: true, using: :btree
   end
 
+  add_foreign_key "conversations", "engineers"
+  add_foreign_key "conversations", "recruiters"
   add_foreign_key "engineers", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "recruiters", "users"
