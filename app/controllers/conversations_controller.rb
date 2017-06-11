@@ -26,6 +26,10 @@ class ConversationsController < ProtectedController
 
   # POST /conversations
   def create
+    if current_user.account_type == 'engineer'
+      render :status => 401
+      return
+    end
     @conversation = @recruiter.conversations.build(create_conversation_params)
 
     if @conversation.save
