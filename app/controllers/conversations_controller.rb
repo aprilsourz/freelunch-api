@@ -1,6 +1,7 @@
 class ConversationsController < ProtectedController
   before_action :set_conversation, only: [:show, :update, :destroy]
   before_action :set_recruiter, only: [:create]
+  before_action :set_engineer, only: [:update]
   # GET /conversations
   def index
     @conversations = Conversation.all
@@ -26,8 +27,9 @@ class ConversationsController < ProtectedController
 
   # PATCH/PUT /conversations/1
   def update
-    if @conversation.update(create_conversation_params)
-      render json: @conversation
+    @current_edit = @engineer.conversations.find(@conversation.id)
+    if @current_edit.update(update_conversation_params)
+      render json: @current_edit
     else
       render json: @conversation.errors, status: :unprocessable_entity
     end
@@ -49,9 +51,18 @@ class ConversationsController < ProtectedController
     @recruiter = current_user.recruiter
   end
 
+  def set_engineer
+    @engineer = current_user.engineer
+  end
+
+
   # Only allow a trusted parameter "white list" through.
   def create_conversation_params
     params.require(:conversation)
           .permit(:recruiter_name, :engineer_name, :lunch_request, :engineer_id)
+  end
+
+  def update_conversation_params
+    params.require(:conversation).permit(:response, :is_completed)
   end
 end
