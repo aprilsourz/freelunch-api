@@ -1,7 +1,7 @@
 #!/bin/bash
-TOKEN=BAhJIiU5MzFkMGJhOTg0MmVmOWQ0ZDU1YzY2ZWRkYjhjOTM0NgY6BkVG--4a85a1cdca084800f665919fd2cb3202cdab4329
-NAME=recruiter2
-WEBSITE=recruiter2
+TOKEN=BAhJIiUzMGU0NzExMDhkOGJlNDE3NzgzNmQzMGNmMjE3ODE2ZgY6BkVG--39cb933b2b700878afd4ae6fdfebc14ab1f85434
+NAME=recruiter5
+WEBSITE=recruiter5
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/recruiters"
 curl "${API}${URL_PATH}" \

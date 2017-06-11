@@ -2,12 +2,15 @@
 
 class ConversationsController < ProtectedController
   before_action :set_conversation, only: %i[show update destroy remove_from_trash]
-  before_action :set_recruiter, only: [:create]
-  before_action :set_engineer, only: [:update]
+  before_action :set_recruiter, only: %i[create index]
+  before_action :set_engineer, only: %i[update index]
   # GET /conversations
   def index
-    @conversations = Conversation.all
-
+    if current_user.account_type == 'engineer'
+      @conversations = @engineer.conversations.all
+    elsif current_user.account_type == 'recruiter'
+      @conversations = @recruiter.conversations.all
+    end
     render json: @conversations
   end
 

@@ -1,9 +1,9 @@
 #!/bin/bash
-TOKEN=BAhJIiU4MDgwMTAzMjcyYTAxMmVhMmZiNTAzOTJhYzVmOTZhZgY6BkVG--ac6048a85ba2d7f828aa782f2bfd8d37249c79b9
-RNAME=recruiter2
-ENAME=arlo1
-ID=3
-LUNCH=lunchrequest
+TOKEN=BAhJIiUzMGU0NzExMDhkOGJlNDE3NzgzNmQzMGNmMjE3ODE2ZgY6BkVG--39cb933b2b700878afd4ae6fdfebc14ab1f85434
+RNAME=recruiter5
+ENAME=e2
+ID=6
+LUNCH=lunch
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/conversations"
 curl "${API}${URL_PATH}" \
