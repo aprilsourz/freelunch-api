@@ -8,3 +8,5 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Token token=$TOKEN"
 
 echo
+
+# https://protected-fjord-91425.herokuapp.com/

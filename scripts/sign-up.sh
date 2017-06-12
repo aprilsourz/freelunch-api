@@ -3,6 +3,7 @@
 EMAIL="e5"
 PASSWORD="e5"
 API="${API_ORIGIN:-http://localhost:4741}"
+
 URL_PATH="/sign-up"
 curl "${API}${URL_PATH}" \
   --include \
@@ -13,8 +14,10 @@ curl "${API}${URL_PATH}" \
       "email": "'"${EMAIL}"'",
       "password": "'"${PASSWORD}"'",
       "password_confirmation": "'"${PASSWORD}"'",
-      "account_type": 0
+      "account_type": 1
     }
   }'
 
 echo
+
+# https://protected-fjord-91425.herokuapp.com/

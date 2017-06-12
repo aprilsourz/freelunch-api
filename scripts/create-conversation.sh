@@ -1,10 +1,10 @@
 #!/bin/bash
-TOKEN=BAhJIiVmMTFiNDc1ZjEzNTFmMWNkNzFkNDBhMmFkYWNmYjJkYgY6BkVG--967857f37f26a3bf6591164f24866c6e237795cc
-RNAME=recruiter2
-ENAME=arlo1
-ID=3
+TOKEN=BAhJIiU0YTBlZjhmYTE0ZjBiNWU4MzJlNGRiYWFjMTIxODRmMAY6BkVG--6289d52532e5769d925064687c5207af9493887e
+RNAME=r1
+ENAME=something
+ID=1
 LUNCH=lunch
-API="${API_ORIGIN:-http://localhost:4741}"
+API="${API_ORIGIN:-https://protected-fjord-91425.herokuapp.com}"
 URL_PATH="/conversations"
 curl "${API}${URL_PATH}" \
   --include \
@@ -21,3 +21,5 @@ curl "${API}${URL_PATH}" \
   }'
 
 echo
+
+# https://protected-fjord-91425.herokuapp.com/

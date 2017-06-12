@@ -1,8 +1,8 @@
 #!/bin/bash
-TOKEN=BAhJIiUxZTRlZjIyYjA2Y2ZjZDg0YTFhOGMyOTY2ODk2MDAyZAY6BkVG--a48398f965217092abe61bc2e811933ae1ef238a
-NAME=e3
-WEBSITE=e3
-API="${API_ORIGIN:-http://localhost:4741}"
+TOKEN=BAhJIiU0YmJiMDVlMmY0NWZhMGUzODlkNTllNjU3ZjRiNGNjNAY6BkVG--44d3a48e33e0509a4c7b8048e62535d051546660
+NAME=e1
+WEBSITE=e1
+API="${API_ORIGIN:-https://protected-fjord-91425.herokuapp.com}"
 URL_PATH="/engineers"
 curl "${API}${URL_PATH}" \
   --include \
@@ -17,3 +17,5 @@ curl "${API}${URL_PATH}" \
   }'
 
 echo
+
+# https://protected-fjord-91425.herokuapp.com/
