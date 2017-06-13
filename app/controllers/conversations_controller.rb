@@ -30,6 +30,11 @@ class ConversationsController < ProtectedController
       render status: 401
       return
     end
+
+    # if @recruiter.conversations.where(recruiter_id: create_conversation_params[:recruiter_id]).where(engineer_id: create_conversation_params[:engineer_id]) != []
+    #   render status: 400
+    #     return
+    #   end
     @conversation = @recruiter.conversations.build(create_conversation_params)
 
     if @conversation.save
