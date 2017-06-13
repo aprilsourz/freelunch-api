@@ -22,7 +22,6 @@ class RecruitersController < ProtectedController
       render status: 401
       return
     end
-
     @recruiter = current_user.build_recruiter(recruiter_params)
 
     if @recruiter.save
