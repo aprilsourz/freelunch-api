@@ -63,19 +63,30 @@ class ConversationsController < ProtectedController
   def destroy
     if current_user.account_type == 'engineer'
       if @conversation.update(show_to_engineer: false)
-        render json: @conversation
+        if @conversation.show_to_engineer == false && @conversation.show_to_recruiter == false
+          @conversation.destroy
+          head :no_content
+        else
+          render json: @conversation
+        end
       else
-        render json: @conversation.errors, status: :unprocessable_entity
+        render json: @conversation.errors, status: :bad_request
       end
     end
 
     if current_user.account_type == 'recruiter'
       if @conversation.update(show_to_recruiter: false)
-        render json: @conversation
+        if @conversation.show_to_engineer == false && @conversation.show_to_recruiter == false
+          @conversation.destroy
+          head :no_content
+        else
+          render json: @conversation
+        end
       else
-        render json: @conversation.errors, status: :unprocessable_entity
+        render json: @conversation.errors, status: :bad_request
       end
     end
+
   end
 
   def remove_from_trash
