@@ -7,9 +7,9 @@ class ConversationsController < ProtectedController
   # GET /conversations
   def index
     if current_user.account_type == 'engineer'
-      @conversations = @engineer.conversations.all
+      @conversations = @engineer.conversations.all.where show_to_engineer: true
     elsif current_user.account_type == 'recruiter'
-      @conversations = @recruiter.conversations.all
+      @conversations = @recruiter.conversations.all.where show_to_recruiter: true
     end
     render json: @conversations
   end
