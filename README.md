@@ -21,9 +21,9 @@ If you wish to fork and clone this repository you will need to install dependenc
 I started the project by writing user stories. I then drew wire frames and made an ERD. I wrote pseudocode for every feature. Through this process I was able to more accurately see complexity and strip down my plan to a mininum viable product.
 
 ## Building
-I worked on one resource at a time. Starting with users and their profiles(engineer or recruiter), then moving onto the conversations resource. I used rails commands to generate migration, model, and controller files. Referring to my user stories and pseudocode while creating the controller action for each API endpoint helped me to stay on track. I tested routes with curL scripts throughout the process. I often broke down a controller action into small steps on paper.
+I worked on one resource at a time. Starting with users and their profiles(engineer or recruiter), then moving onto the conversations resource. I used rails commands to generate migration, model, and controller files. Referring to my user stories and pseudocode while creating the controller action for each API endpoint helped me to stay on track. I tested routes with curl scripts throughout the process. I often broke down a controller action into small steps on paper.
 
-I implimented the front end app with ember.js. I found it useful to refer to rails console when I got errors. This helped me format the HTTP requests from the front end correctly.
+I implimented the front end app with Ember.js. I found it useful to refer to the rails console when I got errors. This helped me format the HTTP requests from the front end correctly.
 
 I kept a running list of bugs and features. This helped me to stay on task without forgetting about the loose ends.
 
@@ -49,6 +49,7 @@ I kept a running list of bugs and features. This helped me to stay on task witho
 | GET    | `/conversations/:id`   |   `conversationss#show` |
 | POST   | `/conversations`       |   `conversations#create`|
 | PATCH  | `/conversations/:id`   |   `conversations#update`|
+| DELETE | `/conversations/:id`   |   `conversations#destroy`|
 
 All data returned from API actions is formatted as JSON. Update actions will also work with a PUT.
 
@@ -143,6 +144,9 @@ All '/engineers' action requests must include a valid HTTP header `Authorization
 The `index` action is a *GET* that retrieves all the engineers from the database.
 The response body will contain JSON containing an array of items, e.g.:
 
+### show
+The `show` action is a *GET*. the routes dynamic segment is the `id` of the engineer you wish to retrieve.
+
 ### create
 
 The `create` action expects a *POST* 
@@ -159,8 +163,7 @@ Request body:
 
 ### update
 
-The `update` action is a *PATCH* the routes dynamic segment is the `id` of the engineer you wish to update.
-This action will only accept a new website.
+The `update` action is a *PATCH* the routes dynamic segment may be any integer, this action will target the engineer that belongs to the signed in user. This action will only accept a new website.
 
 Request body:
 ```json
@@ -181,6 +184,8 @@ All '/engineers' action requests must include a valid HTTP header `Authorization
 
 The `index` action is a *GET* that retrieves all the recruiters from the database.
 
+### show
+The `show` action is a *GET*. the routes dynamic segment is the `id` of the recruiter you wish to retrieve.
 
 ### create
 
@@ -198,8 +203,7 @@ Request body:
 
 ### update
 
-The `update` action is a *PATCH* the routes dynamic segment is the `id` of the recruiter you wish to update.
-This action will only accept a new website.
+The `update` action is a *PATCH* the routes dynamic segment may be any integer, this action will target the recruiter that belongs to the signed in user. This action will only accept a new website.
 
 Request body:
 
