@@ -23,7 +23,7 @@ I started the project by writing user stories. I then drew wire frames and made 
 ## Building
 I worked on one resource at a time. Starting with users and their profiles(engineer or recruiter), then moving onto the conversations resource. I used rails commands to generate migration, model, and controller files. Referring to my user stories and pseudocode while creating the controller action for each API endpoint helped me to stay on track. I tested routes with curl scripts throughout the process. I often broke down a controller action into small steps on paper.
 
-I implimented the front end app with Ember.js. I found it useful to refer to the rails console when I got errors. This helped me format the HTTP requests from the front end correctly.
+I implimented the front end app with Ember.js. I found it useful to refer to the rails console when I got errors. This helped me to format the HTTP requests from the front end correctly.
 
 I kept a running list of bugs and features. This helped me to stay on task without forgetting about the loose ends.
 
