@@ -12,7 +12,7 @@ URL for api: [https://protected-fjord-91425.herokuapp.com/](https://protected-fj
 Link to try the app: [https://arlofeirman.github.io/free-lunch/](https://arlofeirman.github.io/free-lunch/)
 
 ### Technologies
-This API was built with Ruby on Rails and was tested with curl scripts. The front end application was built with Ember.js and bootstrap
+This API was built with Ruby on Rails and was tested with curl scripts. The front end application was built with Ember.js and Bootstrap
 
 #### Installation
 If you wish to fork and clone this repository you will need to install dependencies by running ```bundle install``` in the root directory of the project.
