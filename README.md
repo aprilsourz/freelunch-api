@@ -21,7 +21,7 @@ If you wish to fork and clone this repository you will need to install dependenc
 I started the project by writing user stories. I then drew wire frames and made an ERD. I wrote pseudocode for every feature. Through this process I was able to more accurately see complexity and strip down my plan to a mininum viable product.
 
 ## Building
-I worked on one resource at a time. Starting with users and their profiles(engineer or recruiter), then moving onto the conversations resource. I used rails commands to generate migration, model, and controller files. Referring to my user stories and pseudocode while creating the controller action for each API endpoint helped me stay on track. I tested routes with curL scripts throughout the process. I often broke down a controller action into small steps on paper.
+I worked on one resource at a time. Starting with users and their profiles(engineer or recruiter), then moving onto the conversations resource. I used rails commands to generate migration, model, and controller files. Referring to my user stories and pseudocode while creating the controller action for each API endpoint helped me to stay on track. I tested routes with curL scripts throughout the process. I often broke down a controller action into small steps on paper.
 
 I implimented the front end app with ember.js. I found it useful to refer to rails console when I got errors. This helped me format the HTTP requests from the front end correctly.
 
