@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :conversations
   resources :recruiters, except: [:destroy]
   resources :engineers, except: [:destroy]
-  resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
   post '/sign-in' => 'users#signin'
   delete '/sign-out/:id' => 'users#signout'
