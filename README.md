@@ -27,6 +27,15 @@ I implimented the front end app with Ember.js. I found it useful to refer to the
 
 I kept a running list of bugs and features. This helped me to stay on task without forgetting about the loose ends.
 
+## Challenges
+This is the first project I've done that has to types of users. That added a layer of complexity. I had to handle authorization based on account type in the back end and the front end. I used if statements in controller actions to run differrent blocks of code based on the users account type. I think there is a more elegant solution to be found for authorization. Using nested if blocks will not scale well.
+
+## Future iterations
+
+* Implement full messaging system, allowing for more than one back and forth between the recruiter and engineer.
+* Allow users to select a location, a recruiter could then filter through the engineers by proximity. This would utilize geo tagging with the google maps API.
+* Build a complete profile page for a user including a profile picture, favorite foods, bio, etc..
+
 ## API end-points
 
 | Verb   | Path                   |   Controller#Action     |
