@@ -89,14 +89,15 @@ class ConversationsController < ProtectedController
 
   end
 
-  def remove_from_trash
-    if current_user.account_type == 'engineer'
-      if @conversation.update(show_to_engineer: true)
-        render json: @conversation
-      else
-        render json: @conversation.errors, status: :unprocessable_entity
-      end
-    end
+  # For a future iteration. Remove from trash feature.
+  # def remove_from_trash
+  #   if current_user.account_type == 'engineer'
+  #     if @conversation.update(show_to_engineer: true)
+  #       render json: @conversation
+  #     else
+  #       render json: @conversation.errors, status: :unprocessable_entity
+  #     end
+  #   end
 
     if current_user.account_type == 'recruiter'
       if @conversation.update(show_to_recruiter: true)
