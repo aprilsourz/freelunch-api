@@ -176,7 +176,7 @@ Request body:
 
 ## Recruiter actions
 
-All '/engineers' action requests must include a valid HTTP header `Authorization: Token
+All '/recruiters' action requests must include a valid HTTP header `Authorization: Token
  token=<token>`
 
 
@@ -217,7 +217,7 @@ Request body:
 
 ## Conversation actions
 
-All '/engineers' action requests must include a valid HTTP header `Authorization: Token
+All '/conversations' action requests must include a valid HTTP header `Authorization: Token
  token=<token>`
 
 
