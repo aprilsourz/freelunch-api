@@ -151,8 +151,8 @@ Request body:
 ```json
 {
     "engineer": {
-      "name": "examplename":,
-      "website": "https//example.com",
+      "name": "examplename",
+      "website": "https//example.com"
     }
   }
  ```
@@ -190,7 +190,7 @@ Request body:
 ```json
 {
     "recruiter": {
-      "name": "examplename":,
+      "name": "examplename",
       "website": "https//:example.com",
     }
   }
@@ -198,16 +198,67 @@ Request body:
 
 ### update
 
-The `update` action is a *PATCH* the routes dynamic segment is the `id` of the engineer you wish to update.
+The `update` action is a *PATCH* the routes dynamic segment is the `id` of the recruiter you wish to update.
 This action will only accept a new website.
 
-Eample JSON
+Request body:
 
 ```json
 {
-    "engineer": {
+    "recruiter": {
       "website": "https//:example.com",
     }
   }
 ```
 
+## Conversation actions
+
+All '/engineers' action requests must include a valid HTTP header `Authorization: Token
+ token=<token>`
+
+
+### index
+
+The `index` action is a *GET* that retrieves all the conversations that the signed in user has ownership of from the database.
+
+
+### create
+
+The `create` action expects a *POST*. Only a user with the account type 'recruiter' may make this request.
+If user has an account typ of 'engineer' the API will send back a `401 Unauthorized`. If a recruiter attempts to create more than one conversation with the same engineer the API will send back a `422 Unprocessable Entity`
+
+Request body:
+```json
+{
+    "conversation": {
+      "recruiter_name": "example",
+      "engineer_name": "example",
+      "lunch_request": "messagetext",
+      "engineer_id": "45"
+    }
+  }
+ ```
+`recruiter_name` should be the name of the signed in recruiter who is creating the conversation. `engineer_name` and `engnineer_id` are the id and name attributes of the engineer that the recruiter is sending the conversation too. `lunch_request` is the message the recruiter has entered into a form.
+
+
+### update
+
+The `update` action is a *PATCH* the routes dynamic segment is the `id` of the conversation you wish to update.
+Only a user with the account type 'engineer' may make this request.
+If user has an account typ of 'recruiter' the API will send back a `401 Unauthorized`.
+The update actions functionality is to let an engineer respond to the conversation that a recruiter created with them.
+
+Request Body:
+```json
+{
+    "conversation": {
+      "response": "textofresponse",
+      "is_completed": "false"
+    }
+  }
+```
+
+Response is the message that the engineer has typed into a form. is_completed must always be set to true in the request body!!
+
+## destroy
+The `update` action is a *DELETE*. If the user making this request is an engineer the action will update the show_to_engineer column on the conversation to false. If the user making this request is a recruiter the action will update the show_to_recruiter column on the conversation to false. This provides a user with the ability to delete a conversation from their inbox with out deleting it from the other associated users inbox. If the both the engineer and the recruiter set their show_to fields to false the conversation will be removed from the database.
