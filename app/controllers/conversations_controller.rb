@@ -98,15 +98,15 @@ class ConversationsController < ProtectedController
   #       render json: @conversation.errors, status: :unprocessable_entity
   #     end
   #   end
-
-    if current_user.account_type == 'recruiter'
-      if @conversation.update(show_to_recruiter: true)
-        render json: @conversation
-      else
-        render json: @conversation.errors, status: :unprocessable_entity
-      end
-    end
-  end
+  #
+  #   if current_user.account_type == 'recruiter'
+  #     if @conversation.update(show_to_recruiter: true)
+  #       render json: @conversation
+  #     else
+  #       render json: @conversation.errors, status: :unprocessable_entity
+  #     end
+  #   end
+  # end
 
   private
 
