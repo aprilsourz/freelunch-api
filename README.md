@@ -145,7 +145,7 @@ The `index` action is a *GET* that retrieves all the engineers from the database
 The response body will contain JSON containing an array of items, e.g.:
 
 ### show
-The `show` action is a *GET*. the routes dynamic segment is the `id` of the engineer you wish to retrieve.
+The `show` action is a *GET*. The routes dynamic segment is the `id` of the engineer you wish to retrieve.
 
 ### create
 
