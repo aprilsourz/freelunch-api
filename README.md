@@ -142,14 +142,13 @@ All '/engineers' action requests must include a valid HTTP header `Authorization
 ### index
 
 The `index` action is a *GET* that retrieves all the engineers from the database.
-The response body will contain JSON containing an array of items, e.g.:
 
 ### show
 The `show` action is a *GET*. The routes dynamic segment is the `id` of the engineer you wish to retrieve.
 
 ### create
 
-The `create` action expects a *POST* 
+The `create` action expects a *POST*
 
 Request body:
 ```json
@@ -160,6 +159,7 @@ Request body:
     }
   }
  ```
+ Name must be the user name of the signed in user.
 
 ### update
 
@@ -185,7 +185,7 @@ All '/recruiters' action requests must include a valid HTTP header `Authorizatio
 The `index` action is a *GET* that retrieves all the recruiters from the database.
 
 ### show
-The `show` action is a *GET*. the routes dynamic segment is the `id` of the recruiter you wish to retrieve.
+The `show` action is a *GET*. The routes dynamic segment is the `id` of the recruiter you wish to retrieve.
 
 ### create
 
@@ -200,6 +200,7 @@ Request body:
     }
   }
  ```
+ name must be the user name of the signed in user
 
 ### update
 
@@ -225,6 +226,8 @@ All '/conversations' action requests must include a valid HTTP header `Authoriza
 
 The `index` action is a *GET* that retrieves all the conversations that the signed in user has ownership of from the database.
 
+### show
+The `show` action is a *GET*. The routes dynamic segment is the `id` of the conversation you wish to retrieve.
 
 ### create
 
@@ -242,7 +245,7 @@ Request body:
     }
   }
  ```
-`recruiter_name` should be the name of the signed in recruiter who is creating the conversation. `engineer_name` and `engnineer_id` are the id and name attributes of the engineer that the recruiter is sending the conversation too. `lunch_request` is the message the recruiter has entered into a form.
+`recruiter_name` should be the name of the signed in recruiter who is creating the conversation. `engineer_name` and `engnineer_id` should be the id and name attributes of the engineer that the recruiter is sending the conversation too. `lunch_request` is the message the recruiter has entered into a form.
 
 
 ### update
