@@ -53,79 +53,15 @@ I kept a running list of bugs and features. This helped me to stay on task witho
 All data returned from API actions is formatted as JSON. Update actions will also work with a PUT.
 
 ---
+## Authentication
 
-## User actions
-
-*Summary:*
-
-<table>
-<tr>
-  <th colspan="3">Request</th>
-  <th colspan="2">Response</th>
-</tr>
-<tr>
-  <th>Verb</th>
-  <th>URI</th>
-  <th>body</th>
-  <th>Status</th>
-  <th>body</th>
-</tr>
-<tr>
-<td>POST</td>
-<td>`/sign-up`</td>
-<td><strong>credentials</strong></td>
-<td>201, Created</td>
-<td><strong>user</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>400 Bad Request</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>POST</td>
-<td>`/sign-in`</td>
-<td><strong>credentials</strong></td>
-<td>200 OK</td>
-<td><strong>user w/token</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>401 Unauthorized</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>`/sign-out/:id`</td>
-<td>empty</td>
-<td>201 Created</td>
-<td>empty</td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>401 Unauthorized</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>`/change-password/:id`</td>
-<td><strong>passwords</strong></td>
-<td>204 No Content</td>
-<td><strong>user w/token</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>400 Bad Request</td>
-  <td><em>empty</em></td>
-</tr>
-</table>
 
 ### signup
 
-The `create` action expects a *POST* of `credentials` identifying a new user to
+Signup action expects a *POST* of `credentials` identifying a new user to
  create.
 
-```
+Request body:
 ```json
 {
   "credentials": {
@@ -138,9 +74,10 @@ The `create` action expects a *POST* of `credentials` identifying a new user to
 
 ### signin
 
-The `signin` action expects a *POST* with `credentials` identifying a previously
+Sign in action expects a *POST* with `credentials` identifying a previously
  registered user.
-
+ 
+Request body:
 ```json
 {
   "credentials": {
@@ -153,6 +90,8 @@ The `signin` action expects a *POST* with `credentials` identifying a previously
 If the request is successful, the response will have an HTTP Status of 200 OK,
  and the body will be JSON containing the user's `id`, `email`, and the `token`
  used to authenticate other requests.
+ 
+Response body:
 ```json
 {
   "user": {
@@ -170,22 +109,22 @@ If the request is unsuccessful, the response will have an HTTP Status of 401
 
 The `signout` actions is a *DELETE* specifying the `id` of the user to sign out.
 
-If the request is successful the response will have an HTTP status of 204 No
- Content.
-
-If the request is unsuccessful, the response will have a status of 401
- Unauthorized.
 
 ### changepw
 
 The `changepw` action expects a PATCH of `passwords` specifying the `old` and
  `new`.
 
-If the request is successful the response will have an HTTP status of 204 No
- Content.
+Request body:
+```json
+ {
+    "passwords": {
+      "old": "oldpassword",
+      "new": "newpassowrd"
+    }
+  }
+```
 
-If the request is unsuccessful the reponse will have an HTTP status of 400 Bad
- Request.
 
 ---
 
@@ -193,159 +132,82 @@ The `sign-out` and `change-password` requests must include a valid HTTP header
  `Authorization: Token token=<token>` or they will be rejected with a status of
  401 Unauthorized.
 
-## Item actions
+## Engineer actions
 
-All items action requests must include a valid HTTP header `Authorization: Token
- token=<token>
+All '/engineers' action requests must include a valid HTTP header `Authorization: Token
+ token=<token>`
 
-
-*Summary:*
-
-<table>
-<tr>
-  <th colspan="3">Request</th>
-  <th colspan="2">Response</th>
-</tr>
-<tr>
-  <th>Verb</th>
-  <th>URI</th>
-  <th>body</th>
-  <th>Status</th>
-  <th>body</th>
-</tr>
-<tr>
-<td>POST</td>
-<td>`/items`</td>
-<td><strong>item</strong></td>
-<td>200, OK</td>
-<td><strong>item w/ id</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>400 Bad Request</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>`/items/:id`</td>
-<td><strong>item</strong></td>
-<td>200 OK</td>
-<td><strong>item w/ id</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>422 Unprocessable Entity</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>`/items/:id`</td>
-<td>empty</td>
-<td>204 no content</td>
-<td>empty</td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td>401 Unauthorized</td>
-  <td><em>empty</em></td>
-</tr>
-<tr>
-<td>GET</td>
-<td>`/items/</td>
-<td><strong>item</strong></td>
-<td>200 OK</td>
-<td><strong>Items for signed in user</strong></td>
-</tr>
-<tr>
-  <td colspan="3"></td>
-  <td></td>
-  <td>400 bad request</td>
-</tr>
-</table>
 
 ### index
 
-The `index` action is a *GET* that retrieves all the items associated with a
- user.
+The `index` action is a *GET* that retrieves all the engineers from the database.
 The response body will contain JSON containing an array of items, e.g.:
 
-```json
-{
-  "items": [
-    {
-      "content": "Item 1",
-      "id": 43
-    },
-    {
-      "content": "Item 2",
-      "id": 3
-    }
-  ]
-}
-```
 ### create
 
 The `create` action expects a *POST* 
 
-Example JSON
-
+Request body:
 ```json
 {
-    "item": {
-      "content": "Item Content"
+    "engineer": {
+      "name": "examplename":,
+      "website": "https//example.com",
     }
   }
  ```
 
-If the request is successful, the response will have an HTTP Status of 200
- OK, and the body will contain JSON of the Item and its id.
+### update
 
+The `update` action is a *PATCH* the routes dynamic segment is the `id` of the engineer you wish to update.
+This action will only accept a new website.
+
+Request body:
 ```json
 {
-  "item": {
-    "content": "Item Content",
-    "id": 48
+    "engineer": {
+      "website": "https//:example.com",
+    }
   }
-}
 ```
 
-If the request is unsuccessful, the response will have an HTTP Status of 400 Bad
- Request, and the response body will be JSON describing the errors.
+## Recruiter actions
+
+All '/engineers' action requests must include a valid HTTP header `Authorization: Token
+ token=<token>`
 
 
-### destroy
+### index
 
-The `destroy` actions is a *DELETE* specifying the `id` of the list item to delete.
+The `index` action is a *GET* that retrieves all the recruiters from the database.
 
-If the request is successful the response will have an HTTP status of 204 No
- Content.
 
-If the request is unsuccessful, the response will have a status of 401
- Unauthorized.
+### create
+
+The `create` action expects a *POST* 
+
+Request body:
+```json
+{
+    "recruiter": {
+      "name": "examplename":,
+      "website": "https//:example.com",
+    }
+  }
+ ```
 
 ### update
 
-The `update` action is a *PATCH* specifying the `id` of the list item to edit.
+The `update` action is a *PATCH* the routes dynamic segment is the `id` of the engineer you wish to update.
+This action will only accept a new website.
 
 Eample JSON
 
 ```json
 {
-    "item": {
-      "content": "item content"
+    "engineer": {
+      "website": "https//:example.com",
     }
   }
 ```
 
-If the request is successful, the response will have an HTTP Status of 200
- OK, and the body will contain JSON of the Item and its id.
-
-```json
-{
-  "item": {
-    "content": "Item Content",
-    "id": 48
-  }
-}
-```
-If the request is unsuccessful the reponse will have an HTTP status of 422 Unprocessable Entity
