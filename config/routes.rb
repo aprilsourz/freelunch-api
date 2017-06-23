@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :messages
   # Route for remove conversation from trash feature. For a future iteration.
   # post '/conversations/:id/remove-from-trash' => 'conversations#remove_from_trash'
   resources :conversations
