@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class MessagesController < ProtectedController
-  before_action :set_message, only: %i[show update destroy]
+  before_action :set_message, only: %i[update destroy]
   before_action :set_recruiter, only: %i[create index show]
   before_action :set_engineer, only: %i[create index show]
+  before_action :set_conversation, only: :show
 
   # GET /messages
   def index
@@ -14,7 +15,8 @@ class MessagesController < ProtectedController
 
   # GET /messages/1
   def show
-    render json: @message
+    @messages = @conversation.messages
+    render json: @messages
   end
 
   # POST /messages
@@ -62,7 +64,9 @@ class MessagesController < ProtectedController
     @engineer = current_user.engineer
   end
 
-  # Only allow a trusted parameter "white list" through.
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+  end
 
   def message_params
     params.require(:message).permit(:conversation_id, :body)

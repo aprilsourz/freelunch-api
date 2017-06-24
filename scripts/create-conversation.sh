@@ -8,12 +8,7 @@ curl "${API}${URL_PATH}" \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=$TOKEN" \
-  --data '{
-    "conversation": {
-      "engineer_id": "'"${ID}"'"
-    }
-  }'
-
+  --data
 echo
 
 # https://protected-fjord-91425.herokuapp.com/
