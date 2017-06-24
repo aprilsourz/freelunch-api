@@ -66,6 +66,5 @@ class EngineersController < ProtectedController
     params.require(:engineer).permit(:website)
   end
 
-
   private :engineer_params, :set_engineer
 end
