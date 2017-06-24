@@ -1,5 +1,9 @@
-class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :update, :destroy]
+# frozen_string_literal: true
+
+class MessagesController < ProtectedController
+  before_action :set_message, only: %i[show update destroy]
+  before_action :set_recruiter, only: %i[create index show]
+  before_action :set_engineer, only: %i[create index show]
 
   # GET /messages
   def index
@@ -15,7 +19,12 @@ class MessagesController < ApplicationController
 
   # POST /messages
   def create
-    @message = Message.new(message_params)
+    if current_user.account_type == 'engineer'
+      @lunchable = @engineer
+    else
+      @lunchable = @recruiter
+    end
+    @message = @lunchable.messages.build(message_params)
 
     if @message.save
       render json: @message, status: :created, location: @message
@@ -39,13 +48,23 @@ class MessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def message_params
-      params.fetch(:message, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
+  def set_recruiter
+    @recruiter = current_user.recruiter
+  end
+
+  def set_engineer
+    @engineer = current_user.engineer
+  end
+
+  # Only allow a trusted parameter "white list" through.
+
+  def message_params
+    params.require(:message).permit(:conversation_id, :body)
+  end
 end

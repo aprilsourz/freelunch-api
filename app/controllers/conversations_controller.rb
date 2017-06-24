@@ -127,7 +127,7 @@ class ConversationsController < ProtectedController
 
   def create_conversation_params
     params.require(:conversation)
-          .permit(:recruiter_name, :engineer_name, :lunch_request, :engineer_id)
+          .permit(:engineer_id)
   end
 
   def update_conversation_params
