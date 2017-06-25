@@ -1,5 +1,5 @@
 #!/bin/bash
-TOKEN=BAhJIiViMDBjOGI1ODk0OGY3MDQ2YTFmZWJjYTJiZDc5NTEzNgY6BkVG--d274fcdc5fdd22b7961f0890a0c449875b9b52f6
+TOKEN=BAhJIiUwN2Y3NjE3YjlhNGRjNDhiY2FkOTA3YjQ1YWYxZWI0NAY6BkVG--b62506e3041aa9ad9473dc99a3113ce4750df0a1
 ID=1
 API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/messages"
@@ -11,7 +11,8 @@ curl "${API}${URL_PATH}" \
   --data '{
     "message": {
       "conversation_id": "'"${ID}"'",
-      "body": "engineer text"
+      "body": "engineer text",
+      "sender_name": "example name"
     }
   }'
 

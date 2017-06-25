@@ -69,6 +69,6 @@ class MessagesController < ProtectedController
   end
 
   def message_params
-    params.require(:message).permit(:conversation_id, :body)
+    params.require(:message).permit(:conversation_id, :body, :sender_name)
   end
 end
