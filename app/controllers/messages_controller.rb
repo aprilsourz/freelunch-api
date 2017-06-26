@@ -4,15 +4,12 @@ class MessagesController < ProtectedController
   before_action :set_message, only: %i[update destroy]
   before_action :set_recruiter, only: %i[create index show]
   before_action :set_engineer, only: %i[create index show]
-  before_action :set_conversation, only: :show
+  before_action :set_conversation, only: :index
 
   # GET /messages
   def index
-    if current_user.account_type == 'engineer'
-      @messages = @engineer.messages
-    else
-      @messages = @recruiter.messages
-    end
+
+  @messages = @conversation.messages
 
     render json: @messages
   end
