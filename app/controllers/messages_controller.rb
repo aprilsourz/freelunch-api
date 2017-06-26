@@ -8,7 +8,11 @@ class MessagesController < ProtectedController
 
   # GET /messages
   def index
-    @messages = Message.all
+    if current_user.account_type == 'engineer'
+      @messages = @engineer.messages
+    else
+      @messages = @recruiter.messages
+    end
 
     render json: @messages
   end
