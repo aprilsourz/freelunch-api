@@ -38,7 +38,7 @@ class MessagesController < ProtectedController
 
   # PATCH/PUT /messages/1
   def update
-    if @message.update(message_params)
+    if @message.update(update_params)
       render json: @message
     else
       render json: @message.errors, status: :unprocessable_entity
@@ -71,5 +71,9 @@ class MessagesController < ProtectedController
 
   def message_params
     params.require(:message).permit(:conversation_id, :body, :sender_name)
+  end
+
+  def update_params
+    params.require(:message).permit(:read)
   end
 end
