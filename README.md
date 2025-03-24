@@ -1,18 +1,13 @@
 # Free Lunch Api
-Capstone project for the Web Development Immersive at General Assembly Boston. This is the repository for the server side application. Free lunch is a networking app for software engineers who want to get taken out to lunch. And for recruiters who are looking for talent. This is the first and most basic iteration of the application.
+Capstone project for the Web Development Immersive at General Assembly Boston. This is the repository for the server-side application. Free Lunch is a networking app for software engineers who want to get taken out to lunch. And for recruiters who are looking for talent. This is the first and most basic iteration of the application.
 
 As of now the app supports no more than 2 messages per lunch invitation. Users can display the link for their personal website or Linked In profile in place of having an in app profile.
 
-URL for api: [https://protected-fjord-91425.herokuapp.com/](https://protected-fjord-91425.herokuapp.com/)
 
 [Link to ERD](http://imgur.com/dhsKD6N)
 
-[Link to front end repository](https://github.com/arlofeirman/free-lunch)
-
-Link to try the app: [https://arlofeirman.github.io/free-lunch/](https://arlofeirman.github.io/free-lunch/)
-
 ### Technologies
-This API was built with Ruby on Rails and was tested with curl scripts. The front end application was built with Ember.js and Bootstrap
+This API was built with Ruby on Rails and was tested with curl scripts. The front-end application was built with Ember.js and Bootstrap
 
 #### Installation
 If you wish to fork and clone this repository you will need to install dependencies by running ```bundle install``` in the root directory of the project.
